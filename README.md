@@ -16,10 +16,10 @@ If you see an error like
 ```
 usermod: user 'pi' is currently used by process 568
 ```
-when trying to execute the user change command, because you are connected through ssh, do the following to remedy this:
+when trying to execute the user change command, this is because you are connected through ssh. Do the following to remedy this:
 ```
 sudo su
-nohup kill 4220; sleep 2; usermod -d /home/user -m -g user -l user pi  &
+nohup kill 568; sleep 2; usermod -d /home/user -m -g user -l user pi  &
 ```
 Repeat the last command if you see the same error. This should kill your ssh connection. Wait a few seconds and connect again as `user`. 
 
