@@ -12,6 +12,17 @@ Raspbian Buster Lite initial install.
     usermod -d /home/user -m -g user -l user pi 
 ~~sudo rpi-update~~ [latest bleeding-edge firmware and kernel no longer needed for these use-case(s)] https://github.com/Hexxeh/rpi-update
 
+If you see an error like  
+```
+usermod: user 'pi' is currently used by process 568
+```
+when trying to execute the user change command, because you are connected through ssh, do the following to remedy this:
+```
+sudo su
+nohup kill 4220; sleep 2; usermod -d /home/user -m -g user -l user pi  &
+```
+Repeat the last command if you see the same error. This should kill your ssh connection. Wait a few seconds and connect again as `user`. 
+
 [Use console based raspi-config](https://www.raspberrypi.org/documentation/configuration/raspi-config.md) application to make configuration changes.
 
     sudo raspi-config
